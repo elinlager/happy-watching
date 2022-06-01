@@ -1,14 +1,14 @@
 <template>
   <div>
     <Navbar />
-    <div class="container">
+    <div class="layoutContainer">
       <Nuxt />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.container {
+.layoutContainer {
   margin: 5rem;
 }
 </style>
