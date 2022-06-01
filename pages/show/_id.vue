@@ -1,6 +1,6 @@
 <template>
   <Spinner v-if="loading" />
-  <h3 v-else-if="error">Oh no something went wrong.</h3>
+  <h3 v-else-if="error">Oh no, could not find your tv-show.</h3>
   <div v-else-if="show">
     <div class="title"> 
       <h3>{{ show.name }}</h3>
@@ -24,8 +24,11 @@ export default {
     try {
       const response = await fetch(`https://api.tvmaze.com/shows/${this.$route.params.id}?embed=episodes`)
         .then(r => r.json());
-      console.log(response)
-      this.show = response;
+      if (response.status !== 200) {
+        this.error = true;
+      } else {
+        this.show = response;
+      }
     } catch (error) {
       this.error = true;
     }
