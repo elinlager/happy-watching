@@ -22,12 +22,11 @@ export default {
     this.loading = true;
     this.error = false;
     try {
-      const response = await fetch(`https://api.tvmaze.com/shows/${this.$route.params.id}?embed=episodes`)
-        .then(r => r.json());
+      const response = await fetch(`https://api.tvmaze.com/shows/${this.$route.params.id}?embed=episodes`);
       if (response.status !== 200) {
         this.error = true;
       } else {
-        this.show = response;
+        this.show = await response.json();
       }
     } catch (error) {
       this.error = true;
