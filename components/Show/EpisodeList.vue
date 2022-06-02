@@ -1,10 +1,21 @@
 <template>
   <div>
-    <div class="pagination-container">
-      <p>Season:</p>
-      <button v-for="index in numberOfSeasons" :key="index" @click="onPageClick(index)" :class="index === page ? 'active' : ''">
-        {{index}}
-      </button>
+    <div class="filter-container">
+      <h6>Filter by:</h6>
+      <div>
+        <button 
+          @click="onFilter('upcomming')"
+          :class="filter.type == 'upcomming' ? 'active' : ''">
+            Upcoming Episodes
+        </button>
+        <button 
+          v-for="index in numberOfSeasons" 
+          :key="index" 
+          @click="onFilter('season', index)" 
+          :class="filter.type == 'season' && filter.value === index ? 'active' : ''">
+            {{ `Season ${index}`}}
+        </button>
+      </div>
     </div>
     <div v-for="episode in filteredEpisodes" :key="episode.id" class="list-item">
       <div class="info">
@@ -29,21 +40,31 @@ export default {
   },
   data() {
     return {
-      page: 1,
+      filter: {
+        type: 'upcomming',
+        value: null
+      }
     }
   },
   computed: {
     filteredEpisodes() {
-      return this.episodes
-        .filter(episode => episode.season == this.page);
+      if (this.filter.type == 'upcomming') {
+        const now = new Date();
+        return this.episodes
+          .filter(episode => new Date(episode.airstamp) > now);
+      } else {
+        return this.episodes
+          .filter(episode => episode.season == this.filter.value);
+      }
     },
     numberOfSeasons() {
       return Math.max(...this.episodes.map(episode => episode.season));
     }
   },
   methods: {
-    onPageClick(pagenr) {
-      this.page = pagenr;
+    onFilter(type, value) {
+      console.log(type)
+      this.filter = { type, value }
     }
   }
 }
@@ -64,11 +85,11 @@ export default {
     align-self: start;
   }
 }
-.pagination-container {
+.filter-container {
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
-  p {
+  h6 {
     margin-bottom: 0;
   }
   button {
@@ -77,7 +98,7 @@ export default {
     border: none;
     outline: none;
     border-radius: 4px;
-    width: 2rem;
+    min-width: 2rem;
     &:hover {
       opacity: 0.8;
     }

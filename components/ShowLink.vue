@@ -22,8 +22,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-a:hover {
-  text-decoration: none;
+a {
+  width: 100%;
+  &:hover {
+    text-decoration: none;
+  }
 }
 .showcard {
   display: flex;
