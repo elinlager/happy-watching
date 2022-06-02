@@ -26,7 +26,7 @@ To fetch data from the API I used the Fetch API, and I think it works fine for s
 
 ### `API`
 
-The API that was used for getting the information about the tv shows was: https://www.tvmaze.com/api.
+The API that was used for getting the information about the tv shows was: https://www.tvmaze.com/api. The summary for a show and episode is returned as html from the API, to render this I use v-html. I am assuming that I can trust the API, otherwise I would sanitize the data before rendering it as HTML.
 
 ### `Styling`
 

@@ -18,18 +18,7 @@
       </div>
     </div>
     <template v-if="filteredEpisodes.length > 0">
-      <div v-for="episode in filteredEpisodes" :key="episode.id" class="list-item">
-        <h5>{{ `${episode.number}. ${episode.name}` }}</h5>
-        <div class="item-content">
-          <div class="info">
-            <span v-html="episode.summary" />
-            <ShowInfoItem title="Season" :value="episode.season" />
-            <ShowInfoItem title="Air date" :value="episode.airdate" />
-            <ShowInfoItem title="Rating" :value="episode.rating.average" />
-          </div>
-          <img v-if="episode.image && episode.image.medium" :src="episode.image.medium" />
-        </div>
-      </div>
+      <ShowEpisode v-for="episode in filteredEpisodes" :key="episode.id" :episode="episode" />
     </template>
     <div v-else-if="filterIsUpcomming">No upcomming episodes announced.</div>
     <div v-else>No episodes found.</div>
@@ -54,7 +43,6 @@ export default {
   },
   computed: {
     filterIsUpcomming() {
-      this.filter.type
       return this.filter.type === 'upcomming';
     },
     filterIsSeason() {
@@ -83,30 +71,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.list-item {
-  background-color: $green;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border-radius: 1rem;
-  .item-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    .info {
-      margin-right: 1rem;
-    }
-    img {
-      align-self: center;
-    }
-    @media (min-width: $mediumScreenMin) {
-      flex-direction: row;
-      margin-bottom: 0.5rem;
-      img {
-        align-self: start;
-      }
-    }
-  }
-}
 .filter-container {
   display: flex;
   align-items: center;

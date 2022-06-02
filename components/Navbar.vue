@@ -1,6 +1,6 @@
 <template>
   <b-navbar toggleable="lg" class="navbar px-4">
-    <NuxtLink class="logo" to="/">Happy Wathcing</NuxtLink>
+    <NuxtLink class="logo" to="/">Happy Watching</NuxtLink>
     
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 

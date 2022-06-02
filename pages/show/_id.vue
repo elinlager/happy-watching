@@ -5,7 +5,7 @@
     <div class="show-header">
       <div class="show-title">
         <h3>{{ show.name }}</h3>
-        <FavouriteButton :showId="'111'" />
+        <FavouriteButton :showId="show.id" />
       </div>
       <BackButton title="Got back to search" />
     </div>

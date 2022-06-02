@@ -1,5 +1,5 @@
 <template>
-  <button @click="toggleFavourite(showId)">
+  <button @click="onToggle()">
     <span class="h4">
       <b-icon-heart-fill v-if="isFavourite"></b-icon-heart-fill>
       <b-icon-heart v-else></b-icon-heart>
@@ -13,17 +13,26 @@ import { mapActions } from 'vuex';
 export default {
   props: {
     showId: {
-      type: String,
+      type: Number | String,
       required: true,
     }
   },
+  emits: ['removeShow', 'addShow'],
   computed: {
     isFavourite () {
       return this.$store.getters.isFavourite(this.showId)
     }
   },
   methods: {
-    ...mapActions(["toggleFavourite"])
+    ...mapActions(["toggleFavourite"]),
+    onToggle() {
+      if (this.isFavourite) {
+        this.$emit('removeShow', this.showId);
+      } else {
+        this.$emit('addShow', this.showId);
+      }
+      this.toggleFavourite(this.showId);
+    }
   },
 }
 </script>
