@@ -20,7 +20,7 @@ For detailed explanation on how things work, check out the [documentation](https
 
 ### `Nuxt 2`
 
-The application is build with Nuxt 2. I chose Nuxt because I think it makes developing in Vue much easier, with auto-imported components, routing, vuex store etc. Ideally I would use the latest version of Nuxt (3), but since I have more experience with Nuxt 2 I thought it would be faster and I could put more effort in designing the application, instead of learning Nuxt 3.
+The application is build with Nuxt 2. I chose Nuxt because I think it makes developing in Vue much easier, with auto-imported components, routing, vuex store etc. Ideally I would use the latest version of Nuxt (3), but since I have more experience with Nuxt 2 I thought it would be faster and I could put more effort in designing the application.
 
 ### `Fetch`
 

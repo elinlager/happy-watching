@@ -1,26 +1,8 @@
 <template>
   <div>
-    <div class="filter-container">
-      <h6>Filter by:</h6>
-      <div class="filters">
-        <button 
-          @click="onFilter('upcomming')"
-          :class="filterIsUpcomming ? 'active' : ''">
-            Upcoming Episodes
-        </button>
-        <button 
-          v-for="index in numberOfSeasons" 
-          :key="index" 
-          @click="onFilter('season', index)" 
-          :class="filterIsSeason && filter.value === index ? 'active' : ''">
-            {{ `Season ${index}`}}
-        </button>
-      </div>
-    </div>
-    <template v-if="filteredEpisodes.length > 0">
-      <ShowEpisode v-for="episode in filteredEpisodes" :key="episode.id" :episode="episode" />
+    <template v-if="episodes.length > 0">
+      <ShowEpisode v-for="episode in episodes" :key="episode.id" :episode="episode" :type="type" />
     </template>
-    <div v-else-if="filterIsUpcomming">No upcomming episodes announced.</div>
     <div v-else>No episodes found.</div>
   </div>
 </template>
@@ -31,42 +13,13 @@ export default {
     episodes: {
       type: Array,
       required: true
+    },
+    type: {
+      type: String,
+      required: false,
+      default: 'big'
     }
   },
-  data() {
-    return {
-      filter: {
-        type: 'upcomming',
-        value: null
-      }
-    }
-  },
-  computed: {
-    filterIsUpcomming() {
-      return this.filter.type === 'upcomming';
-    },
-    filterIsSeason() {
-      return this.filter.type === 'season';
-    },
-    filteredEpisodes() {
-      if (this.filterIsUpcomming) {
-        const now = new Date();
-        return this.episodes
-          .filter(episode => new Date(episode.airstamp) > now);
-      } else {
-        return this.episodes
-          .filter(episode => episode.season == this.filter.value);
-      }
-    },
-    numberOfSeasons() {
-      return Math.max(...this.episodes.map(episode => episode.season));
-    }
-  },
-  methods: {
-    onFilter(type, value) {
-      this.filter = { type, value };
-    }
-  }
 }
 </script>
 

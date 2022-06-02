@@ -24,7 +24,7 @@
     </div>
     <div class="episodes-container">
       <h4>Episodes</h4>
-      <ShowEpisodeList :episodes="show._embedded.episodes" />
+      <ShowEpisodeListFilter :episodes="show._embedded.episodes" />
     </div>
   </div>
 </template>

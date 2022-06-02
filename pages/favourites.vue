@@ -10,11 +10,9 @@
         <NuxtLink :to="`/show/${show.id}`"><h3>{{ show.name }}</h3></NuxtLink>
         <FavouriteButton :showId="show.id" class="favourite-button" @removeShow="removeItem" />
       </div>
-      <div class="episode-list">
-        <div v-if="getUpcommingEpisodes(show.id).length > 0">
-          <h5>Upcomming episodes:</h5>
-          <ShowEpisode v-for="episode in getUpcommingEpisodes(show.id)" :key="episode.id" :episode="episode" type="small" />
-        </div>
+      <div v-if="getUpcommingEpisodes(show.id).length > 0" class="episode-list">
+        <h5>Upcomming episodes:</h5>
+        <ShowEpisodeList type="small" :episodes="getUpcommingEpisodes(show.id)" />
       </div>
     </div>
   </div>
