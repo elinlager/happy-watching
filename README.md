@@ -1,20 +1,14 @@
-# happy-watching
+# Happy Watching
+This is an application to search for TV shows. The user can read details about the show, see episodes that are comming up and mark shows as favourites. 
 
-## Build Setup
+## To build the project
 
 ```bash
-# install dependencies
+# 1. Install dependencies
 $ yarn install
 
-# serve with hot reload at localhost:3000
+# 2. Serve with hot reload at localhost:3000
 $ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
 ```
 
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
