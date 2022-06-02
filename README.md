@@ -1,5 +1,5 @@
 # Happy Watching
-This is an application to search for TV shows. The user can read details about the show, see episodes that are comming up and mark shows as favourites. 
+Happy watching is an application to search for TV shows. The user can read details about the show, see episodes that are comming up and mark shows as favourites. The shows are fetched from: https://www.tvmaze.com/api
 
 ## To build the project
 
@@ -13,51 +13,20 @@ $ yarn dev
 
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
-## Special Directories
+## Tools 
+### `Nuxt 2`
+The application is build with Nuxt 2. I chose Nuxt because I think it makes developing in Vue much easier, with auto-imported components, routing, vuex store etc. Ideally I would use the latest version of Nuxt (3), but since I have more experience with Nuxt 2 I thought it would be faster and I could put more effort in designing the application, instead of learning Nuxt 3.
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+### `API`
+The API that was used for getting the information about the tv shows was: https://www.tvmaze.com/api.
 
-### `assets`
+### `Styling`
+I have used SCSS to style the application and also used Bootrstap vue in to easily create nice and responsive components, like the navbar. Some styling are written with bootstrap classes, but I prefer tot write my own styling with SCSS.
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+If I had more time I would probably research for a popular component-library for Vue applications and use that together with SCSS instead.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+### `Store`
+The Vuex store that is included in Nuxt 2 was used to store the shows that the user had marked as favourites.
 
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+### `What was left out`
+The project does not use Typescript, even though I prefer it over plain Javascript. The reason for this is that I have not used Typescript with Vue before  (have used it when building applications with React and Angular), and reason that it would be more time consuming. However if I had more time I would defnitely rewrite it with Typescript. 
