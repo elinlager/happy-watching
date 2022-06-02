@@ -30,7 +30,7 @@ a:hover {
   align-items: flex-start;
   justify-content: space-between;
   padding: 1rem 2rem;
-  background-color: $yellow;
+  background-color: $pink;
   border-radius: 0.5rem;
   color: $black;
   margin-bottom: 1rem;
