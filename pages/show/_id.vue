@@ -77,11 +77,16 @@ export default {
 .info-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-direction: column-reverse;
   .show-image {
-    flex: 0;
+    margin-bottom: 2rem;
   }
-  .show-info {
-    margin-right: 4rem;
+  @media (min-width: $mediumScreenMin) {
+    flex-direction: row;
+    .show-info {
+      margin-right: 4rem;
+    }
   }
 }
 .episodes-container {

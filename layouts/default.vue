@@ -9,6 +9,9 @@
 
 <style lang="scss" scoped>
 .layout-container {
-  margin: 5rem;
+  margin: 2rem;
+  @media (min-width: $mediumScreenMin) {
+    margin: 5rem;
+  }
 }
 </style>

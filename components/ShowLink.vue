@@ -30,18 +30,21 @@ a {
 }
 .showcard {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
+  flex-direction: column;
   padding: 1rem 2rem;
   background-color: $pink;
   border-radius: 0.5rem;
   color: $black;
   margin-bottom: 1rem;
   cursor: pointer;
+  .summary {
+    display: none;
+  }
   .show-info {
     display: flex;
     flex-direction: column;
-    margin-right: 2rem;
   }
   p {
     margin: 0;
@@ -49,8 +52,18 @@ a {
   &:hover {
     opacity: 0.8;
   }
-  img {
-    max-height: 100px;
+  @media (min-width: $mediumScreenMin) {
+    align-items: flex-start;
+    flex-direction: row;
+    .summary {
+      display: block;
+    }
+    .show-info {
+      margin-right: 2rem;
+    }
+    img {
+      max-height: 100px;
+    }
   }
 }
 </style>

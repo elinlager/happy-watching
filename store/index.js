@@ -19,7 +19,6 @@ export const mutations = {
 
 export const actions = {
   toggleFavourite({ commit, getters }, showId) {
-    console.log(showId)
     if (getters.isFavourite(showId)) {
       commit('removeFavourite', showId);
     } else {

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="search-form">
-      <h3 class="mb-4">Search for a TV show</h3>
-      <div class="d-flex justify-content-center align-items-center">
+    <div class="search-form-container">
+      <h3>Search for a TV show</h3>
+      <div class="search-form">
         <b-form-input v-model.trim="query" @keyup.enter="search" type="text" placeholder="The name of a TV show..."></b-form-input>
         <b-button class="ml-2" @click="search" :disabled="searchButtonDisabled" variant="success">Search</b-button>
       </div>
@@ -52,11 +52,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.search-form {
-  margin-bottom: 2rem;
+.search-form-container {
   text-align: center;
-  input {
-    max-width: 300px;
+  .search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 2rem 0 ;
+    @media (min-width: $mediumScreenMin) {
+      flex-direction: row;
+    }
+    input {
+      max-width: 300px;
+      margin-bottom: 1rem;
+      @media (min-width: $mediumScreenMin) {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 .show-list {

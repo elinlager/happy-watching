@@ -2,7 +2,7 @@
   <div>
     <div class="filter-container">
       <h6>Filter by:</h6>
-      <div>
+      <div class="filters">
         <button 
           @click="onFilter('upcomming')"
           :class="filterIsUpcomming ? 'active' : ''">
@@ -19,14 +19,16 @@
     </div>
     <template v-if="filteredEpisodes.length > 0">
       <div v-for="episode in filteredEpisodes" :key="episode.id" class="list-item">
-        <div class="info">
-          <h5>{{ `${episode.number}. ${episode.name}` }}</h5>
-          <span v-html="episode.summary" />
-          <ShowInfoItem title="Season" :value="episode.season" />
-          <ShowInfoItem title="Air date" :value="episode.airdate" />
-          <ShowInfoItem title="Rating" :value="episode.rating.average" />
+        <h5>{{ `${episode.number}. ${episode.name}` }}</h5>
+        <div class="item-content">
+          <div class="info">
+            <span v-html="episode.summary" />
+            <ShowInfoItem title="Season" :value="episode.season" />
+            <ShowInfoItem title="Air date" :value="episode.airdate" />
+            <ShowInfoItem title="Rating" :value="episode.rating.average" />
+          </div>
+          <img v-if="episode.image && episode.image.medium" :src="episode.image.medium" />
         </div>
-        <img v-if="episode.image && episode.image.medium" :src="episode.image.medium" />
       </div>
     </template>
     <div v-else-if="filterIsUpcomming">No upcomming episodes announced.</div>
@@ -74,8 +76,7 @@ export default {
   },
   methods: {
     onFilter(type, value) {
-      console.log(type)
-      this.filter = { type, value }
+      this.filter = { type, value };
     }
   }
 }
@@ -87,34 +88,67 @@ export default {
   margin-bottom: 1rem;
   padding: 1rem;
   border-radius: 1rem;
-  display: flex;
-  justify-content: space-between;
-  .info {
-    margin-right: 1rem;
-  }
-  img {
-    align-self: start;
+  .item-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .info {
+      margin-right: 1rem;
+    }
+    img {
+      align-self: center;
+    }
+    @media (min-width: $mediumScreenMin) {
+      flex-direction: row;
+      margin-bottom: 0.5rem;
+      img {
+        align-self: start;
+      }
+    }
   }
 }
 .filter-container {
   display: flex;
   align-items: center;
+  flex-direction: column;
   margin-bottom: 2rem;
-  h6 {
-    margin-bottom: 0;
-  }
-  button {
-    margin-left: 0.5rem;
-    background-color: $pink;
-    border: none;
-    outline: none;
-    border-radius: 4px;
-    min-width: 2rem;
-    &:hover {
-      opacity: 0.8;
+  .filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px 2px;
+    button {
+      margin-left: 0.5rem;
+      background-color: $pink;
+      border: none;
+      outline: none;
+      border-radius: 4px;
+      min-width: 2rem;
+      flex-grow: 1;
+      &:hover {
+        opacity: 0.8;
+      }
+      &.active {
+        border: 2px solid $black;
+      }
     }
-    &.active {
-      border: 2px solid $black;
+  }
+  h6 {
+    margin-bottom: 1rem;
+  }
+  @media (min-width: $mediumScreenMin) {
+    flex-direction: row;
+    align-items: center;
+    h6 {
+      flex-shrink: 0;
+      margin-bottom: 0;
+    }
+    .filters {
+      flex-direction: row;
+      button {
+        flex-grow: 0;
+      }
     }
   }
 }
