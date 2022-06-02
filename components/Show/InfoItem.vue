@@ -1,5 +1,5 @@
 <template>
-  <div class="infoItem">
+  <div class="info-item">
     <h6>{{ title }}</h6>
     <p>{{ value ? value : '-' }}</p>
   </div>
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.infoItem {
+.info-item {
   display: flex;
   h6 {
     margin-right: 1rem;

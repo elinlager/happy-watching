@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="paginationContainer">
+    <div class="pagination-container">
       <p>Season:</p>
       <button v-for="index in numberOfSeasons" :key="index" @click="onPageClick(index)" :class="index === page ? 'active' : ''">
         {{index}}
       </button>
     </div>
-    <div v-for="episode in filteredEpisodes" :key="episode.id" class="listItem">
+    <div v-for="episode in filteredEpisodes" :key="episode.id" class="list-item">
       <div class="info">
         <h5>{{ `${episode.number}. ${episode.name}` }}</h5>
         <span v-html="episode.summary" />
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.listItem {
+.list-item {
   background-color: $green;
   margin-bottom: 1rem;
   padding: 1rem;
@@ -64,7 +64,7 @@ export default {
     align-self: start;
   }
 }
-.paginationContainer {
+.pagination-container {
   display: flex;
   align-items: center;
   margin-bottom: 2rem;

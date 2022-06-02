@@ -2,12 +2,12 @@
   <Spinner v-if="loading" />
   <h3 v-else-if="error">Oh no, could not find your tv-show.</h3>
   <div v-else-if="show">
-    <div class="showTitle"> 
+    <div class="show-title"> 
       <h3>{{ show.name }}</h3>
       <FavouriteButton :showId="'111'" />
     </div>
-    <div class="infoContainer">
-      <div class="showInfo">
+    <div class="info-container">
+      <div class="show-info">
         <span v-html="show.summary" />
         <ShowInfoItem title="Running period" :value="`${show.premiered} - ${show.ended ? show.ended : 'Now'}`" />
         <ShowInfoItem title="Language" :value="show.language" />
@@ -15,11 +15,11 @@
         <ShowInfoItem title="Average rating" :value="show.rating.average" />
         <ShowInfoItem title="Web Channel" :value="webChannelInfo" />
       </div>
-      <div class="showImage">
+      <div class="show-image">
         <img v-if="show.image.medium" :src="show.image.medium" />
       </div>
     </div>
-    <div class="episodesContainer">
+    <div class="episodes-container">
       <h4>Episodes</h4>
       <ShowEpisodeList :episodes="show._embedded.episodes" />
     </div>
@@ -66,7 +66,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.showTitle {
+.show-title {
   display: flex;
   align-items: center;
   h3 {
@@ -74,17 +74,17 @@ export default {
     margin-bottom: 0;
   }
 }
-.infoContainer {
+.info-container {
   display: flex;
   justify-content: space-between;
-  .showImage {
+  .show-image {
     flex: 0;
   }
-  .showInfo {
+  .show-info {
     margin-right: 4rem;
   }
 }
-.episodesContainer {
+.episodes-container {
   margin-top: 3rem;
 }
 </style>

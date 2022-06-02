@@ -6,8 +6,8 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav class="ml-auto">
-        <span class="m-2"><NuxtLink class="navLink" to="/favourites">Favourites</NuxtLink></span>
-        <span class="m-2"><NuxtLink class="navLink" to="/">Search</NuxtLink></span>
+        <span class="m-2"><NuxtLink class="nav-link" to="/favourites">Favourites</NuxtLink></span>
+        <span class="m-2"><NuxtLink class="nav-link" to="/">Search</NuxtLink></span>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -22,7 +22,7 @@
     text-decoration: none;
   }
 }
-.navLink {
+.nav-link {
   color: black;
   &:hover {
     opacity: 0.8;
