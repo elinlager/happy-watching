@@ -22,7 +22,7 @@ The application is build with Nuxt 2. I chose Nuxt because I think it makes deve
 
 ### `Fetch`
 
-To fetch data from the API I used the Fetch API, and I think it works fine for such a small application. However if the application got bigger I would probably use axios instead.
+To fetch data from the API I used the Fetch API, and I think it works fine for such a small application. However if the application got bigger I would probably use axios instead, and move the logic to a plugin to handle errors etc.
 
 ### `API`
 
