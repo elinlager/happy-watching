@@ -2,6 +2,8 @@
 
 Happy watching is an application to search for TV shows. The user can read details about the show, see episodes that are comming up and mark shows as favourites. The shows are fetched from: https://www.tvmaze.com/api.
 
+#### The goal of the application is for users to find a show to watch that makes them HAPPY :)
+
 ## To build the project
 
 ```bash
