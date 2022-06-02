@@ -2,9 +2,26 @@
   <Spinner v-if="loading" />
   <h3 v-else-if="error">Oh no, could not find your tv-show.</h3>
   <div v-else-if="show">
-    <div class="title"> 
+    <div class="showTitle"> 
       <h3>{{ show.name }}</h3>
       <FavouriteButton :showId="'111'" />
+    </div>
+    <div class="infoContainer">
+      <div class="showInfo">
+        <span v-html="show.summary" />
+        <ShowInfoItem title="Running period" :value="`${show.premiered} - ${show.ended ? show.ended : 'Now'}`" />
+        <ShowInfoItem title="Language" :value="show.language" />
+        <ShowInfoItem title="Genres" :value="show.genres.join(', ')" />
+        <ShowInfoItem title="Average rating" :value="show.rating.average" />
+        <ShowInfoItem title="Web Channel" :value="webChannelInfo" />
+      </div>
+      <div class="showImage">
+        <img v-if="show.image.medium" :src="show.image.medium" />
+      </div>
+    </div>
+    <div class="episodesContainer">
+      <h4>Episodes</h4>
+      <ShowEpisodeList :episodes="show._embedded.episodes" />
     </div>
   </div>
 </template>
@@ -16,6 +33,18 @@ export default {
       show: null,
       loading: false,
       error: false,
+    }
+  },
+  computed: {
+    webChannelInfo() {
+      let info = '';
+      if (this.show.webChannel && this.show.webChannel.name) {
+        info += `${this.show.webChannel.name}`;
+        if (this.show.webChannel.country && this.show.webChannel.country.name) {
+          info += ` (${this.show.webChannel.country.name})`;
+        }
+      }
+      return info;
     }
   },
   async fetch() {
@@ -37,9 +66,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title {
+.showTitle {
+  display: flex;
+  align-items: center;
+  h3 {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+}
+.infoContainer {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  .showImage {
+    flex: 0;
+  }
+  .showInfo {
+    margin-right: 4rem;
+  }
+}
+.episodesContainer {
+  margin-top: 3rem;
 }
 </style>
