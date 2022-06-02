@@ -5,28 +5,32 @@
       <div>
         <button 
           @click="onFilter('upcomming')"
-          :class="filter.type == 'upcomming' ? 'active' : ''">
+          :class="filterIsUpcomming ? 'active' : ''">
             Upcoming Episodes
         </button>
         <button 
           v-for="index in numberOfSeasons" 
           :key="index" 
           @click="onFilter('season', index)" 
-          :class="filter.type == 'season' && filter.value === index ? 'active' : ''">
+          :class="filterIsSeason && filter.value === index ? 'active' : ''">
             {{ `Season ${index}`}}
         </button>
       </div>
     </div>
-    <div v-for="episode in filteredEpisodes" :key="episode.id" class="list-item">
-      <div class="info">
-        <h5>{{ `${episode.number}. ${episode.name}` }}</h5>
-        <span v-html="episode.summary" />
-        <ShowInfoItem title="Season" :value="episode.season" />
-        <ShowInfoItem title="Air date" :value="episode.airdate" />
-        <ShowInfoItem title="Rating" :value="episode.rating.average" />
+    <template v-if="filteredEpisodes.length > 0">
+      <div v-for="episode in filteredEpisodes" :key="episode.id" class="list-item">
+        <div class="info">
+          <h5>{{ `${episode.number}. ${episode.name}` }}</h5>
+          <span v-html="episode.summary" />
+          <ShowInfoItem title="Season" :value="episode.season" />
+          <ShowInfoItem title="Air date" :value="episode.airdate" />
+          <ShowInfoItem title="Rating" :value="episode.rating.average" />
+        </div>
+        <img v-if="episode.image && episode.image.medium" :src="episode.image.medium" />
       </div>
-      <img v-if="episode.image && episode.image.medium" :src="episode.image.medium" />
-    </div>
+    </template>
+    <div v-else-if="filterIsUpcomming">No upcomming episodes announced.</div>
+    <div v-else>No episodes found.</div>
   </div>
 </template>
 
@@ -47,8 +51,15 @@ export default {
     }
   },
   computed: {
+    filterIsUpcomming() {
+      this.filter.type
+      return this.filter.type === 'upcomming';
+    },
+    filterIsSeason() {
+      return this.filter.type === 'season';
+    },
     filteredEpisodes() {
-      if (this.filter.type == 'upcomming') {
+      if (this.filterIsUpcomming) {
         const now = new Date();
         return this.episodes
           .filter(episode => new Date(episode.airstamp) > now);

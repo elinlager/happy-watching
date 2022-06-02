@@ -38,7 +38,7 @@ export default {
         this.error = false;
         this.emptyResponse = false;
         if (this.query) {
-          const response = await fetch(`https://api.tvmaze.com/search/shows?q=${this.query}`)
+          const response = await fetch(`https://api.tvmaze.com/search/shows?q=${encodeURIComponent(this.query)}`)
             .then(resp => resp.json());
           this.tvshows = response.map(show => show.show);
         }
