@@ -2,9 +2,12 @@
   <Spinner v-if="loading" />
   <h3 v-else-if="error">Oh no, could not find your tv-show.</h3>
   <div v-else-if="show">
-    <div class="show-title"> 
-      <h3>{{ show.name }}</h3>
-      <FavouriteButton :showId="'111'" />
+    <div class="show-header">
+      <div class="show-title">
+        <h3>{{ show.name }}</h3>
+        <FavouriteButton :showId="'111'" />
+      </div>
+      <BackButton title="Got back to search" />
     </div>
     <div class="info-container">
       <div class="show-info">
@@ -66,6 +69,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.show-header {
+  margin-bottom: 1rem;
+}
 .show-title {
   display: flex;
   align-items: center;

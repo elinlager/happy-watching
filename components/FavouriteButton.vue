@@ -33,6 +33,8 @@ button {
   outline: none;
   background-color: transparent;
   border: none;
-  height: 4rem;
+  &:hover {
+    color: $pink;
+  }
 }
 </style>
